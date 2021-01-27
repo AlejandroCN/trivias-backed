@@ -1,7 +1,6 @@
 package com.trivias.backend.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,14 +24,7 @@ public class Usuario implements Serializable {
 	
 	private String username;
 	
-	private String email;
-	
-	private String foto;
-	
 	private String password;
-	
-	@Column(name = "signed_up_with_google")
-	private Boolean signUpWithGoogle;
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -56,22 +48,6 @@ public class Usuario implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getFoto() {
-		return foto;
-	}
-	
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
 
 	public String getPassword() {
 		return password;
@@ -79,14 +55,6 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public Boolean getSignUpWithGoogle() {
-		return signUpWithGoogle;
-	}
-	
-	public void setSignUpWithGoogle(Boolean signUpWithGoogle) {
-		this.signUpWithGoogle = signUpWithGoogle;
 	}
 	
 	public Rol getRol() {
