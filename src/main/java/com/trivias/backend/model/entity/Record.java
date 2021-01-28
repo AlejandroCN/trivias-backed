@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,9 @@ public class Record implements Serializable {
 	private Long id;
 	
 	private Time tiempo;
+	
+	@Column(name = "total_aciertos")
+	private int totalAciertos;
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -58,6 +62,14 @@ public class Record implements Serializable {
 
 	public void setTiempo(Time tiempo) {
 		this.tiempo = tiempo;
+	}
+	
+	public int getTotalAciertos() {
+		return totalAciertos;
+	}
+	
+	public void setTotalAciertos(int totalAciertos) {
+		this.totalAciertos = totalAciertos;
 	}
 
 	public Usuario getUsuario() {
