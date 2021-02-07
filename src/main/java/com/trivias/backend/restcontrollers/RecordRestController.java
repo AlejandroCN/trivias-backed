@@ -30,7 +30,7 @@ public class RecordRestController {
 	@Autowired
 	private RecordService recordService;
 	
-	@Secured("ROLE_USUARIO")
+	@Secured("ROLE_JUGADOR")
 	@PostMapping("")
     public ResponseEntity<?> save(@Valid @RequestBody Record record, BindingResult result) {
         Map<String, Object> response = new HashMap<>();
@@ -56,7 +56,7 @@ public class RecordRestController {
         return new ResponseEntity<Record>(recordCreado, HttpStatus.CREATED);
     }
 	
-	@Secured("ROLE_USUARIO")
+	@Secured("ROLE_JUGADOR")
 	@GetMapping("/findAllByUsuario/{usuarioId}")
 	public ResponseEntity<?> findAllByUsuario(@PathVariable Long usuarioId) {
 		Map<String, Object> response = new HashMap<>();

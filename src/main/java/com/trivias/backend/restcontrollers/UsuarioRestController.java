@@ -55,7 +55,7 @@ public class UsuarioRestController {
         	}
         	
         	usuario.setRol(new Rol());
-        	usuario.getRol().setId(1L);
+        	usuario.getRol().setId(1L);	// solo se pueden auto-registrar usuarios, no administradores
             usuario.setPassword(this.passwordEncoder.encode(usuario.getPassword()));
             usuario.setEnabled(true);
             usuarioCreado = this.usuarioService.save(usuario);

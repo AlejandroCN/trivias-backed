@@ -57,7 +57,7 @@ public class PreguntaRestController {
         return new ResponseEntity<Pregunta>(preguntaCreada, HttpStatus.CREATED);
     }
 	
-	@Secured("ROLE_USUARIO")
+	@Secured("ROLE_JUGADOR")
 	@GetMapping("/find20RandomByCategoria/{categoriaId}")
 	public ResponseEntity<?> find20RandomByCategoria(@PathVariable Long categoriaId) {
 		Map<String, Object> response = new HashMap<>();

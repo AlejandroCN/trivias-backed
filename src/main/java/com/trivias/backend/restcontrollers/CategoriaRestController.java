@@ -23,7 +23,7 @@ public class CategoriaRestController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	@Secured("ROLE_USUARIO")
+	@Secured({"ROLE_JUGADOR", "ROLE_ADMIN"})
 	@GetMapping("")
 	public ResponseEntity<?> findAll() {
 		Map<String, Object> response = new HashMap<>();
