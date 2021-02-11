@@ -16,5 +16,9 @@ public interface CategoriaService {
 	public Page<Categoria> findAllPages(Pagina pagina);
 	
 	public Categoria findById(Long id);
+	
+	public Boolean tieneDependencias(Long categoriaId);
+	
+	public void delete(Long categoriaId);
 
 }

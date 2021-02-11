@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -156,5 +157,32 @@ public class CategoriaRestController {
 
         return new ResponseEntity<Categoria>(categoriaExistente, HttpStatus.CREATED);
     }
+	
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<>();
+        Categoria categoriaExistente = null;
+        
+        try {
+        	categoriaExistente = this.categoriaService.findById(id);
+        	if (categoriaExistente == null) {
+        		response.put("mensaje", "La categoría que se intenta eliminar no existe");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        	}
+        	if (this.categoriaService.tieneDependencias(id)) {
+        		response.put("mensaje", "No puede eliminar la categoría indicada dado que tiene asociaciones");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+        	}
+        	this.categoriaService.delete(id);
+        } catch(DataAccessException ex) {
+            response.put("mensaje", "Ocurrió un error interno al tratar de actualizar categoría");
+            response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        response.put("mensaje", "Categoría eliminada correctamente!");
+        return ResponseEntity.ok(response);
+	}
 
 }

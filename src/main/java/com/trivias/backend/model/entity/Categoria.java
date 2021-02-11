@@ -2,11 +2,17 @@ package com.trivias.backend.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "categorias")
@@ -22,7 +28,10 @@ public class Categoria implements Serializable {
 	
 	private String descripcion;
 	
-	private String imagen;
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "imagen_id")
+	private Imagen imagen;
 
 	public Long getId() {
 		return id;
@@ -48,11 +57,11 @@ public class Categoria implements Serializable {
 		this.descripcion = descripcion;
 	}
 	
-	public String getImagen() {
+	public Imagen getImagen() {
 		return imagen;
 	}
 	
-	public void setImagen(String imagen) {
+	public void setImagen(Imagen imagen) {
 		this.imagen = imagen;
 	}
 

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trivias.backend.model.dao.CategoriaDao;
+import com.trivias.backend.model.dao.PreguntaDao;
 import com.trivias.backend.model.entity.Categoria;
+import com.trivias.backend.model.entity.Pregunta;
 import com.trivias.backend.model.pojo.Pagina;
 
 @Service
@@ -19,6 +21,9 @@ public class CategoriaServiceImp implements CategoriaService {
 	
 	@Autowired
 	private CategoriaDao categoriaDao;
+	
+	@Autowired
+	private PreguntaDao preguntaDao;
 	
 	@Override
 	@Transactional
@@ -48,6 +53,22 @@ public class CategoriaServiceImp implements CategoriaService {
 	@Transactional(readOnly = true)
 	public Categoria findById(Long id) {
 		return this.categoriaDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean tieneDependencias(Long categoriaId) {
+		List<Pregunta> preguntasAsociadas = this.preguntaDao.findByCategoriaId(categoriaId);
+		if (preguntasAsociadas.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long categoriaId) {
+		this.categoriaDao.deleteById(categoriaId);
 	}
 
 }
