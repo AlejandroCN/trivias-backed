@@ -176,7 +176,7 @@ public class CategoriaRestController {
         	}
         	this.categoriaService.delete(id);
         } catch(DataAccessException ex) {
-            response.put("mensaje", "Ocurrió un error interno al tratar de actualizar categoría");
+            response.put("mensaje", "Ocurrió un error interno al tratar de eliminar categoría");
             response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
