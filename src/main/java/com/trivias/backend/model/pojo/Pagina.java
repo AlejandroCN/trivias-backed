@@ -11,6 +11,18 @@ public class Pagina {
 	private String atributo;
 	
 	private String termino;
+	
+	public Pagina() {
+	}
+
+	public Pagina(Integer numPagina, Integer tamPagina, Boolean direccion, String atributo, String termino) {
+		super();
+		this.numPagina = numPagina;
+		this.tamPagina = tamPagina;
+		this.direccion = direccion;
+		this.atributo = atributo;
+		this.termino = termino;
+	}
 
 	public Integer getNumPagina() {
 		return numPagina;

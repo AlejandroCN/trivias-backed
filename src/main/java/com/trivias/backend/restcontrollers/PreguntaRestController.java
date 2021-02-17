@@ -118,8 +118,6 @@ public class PreguntaRestController {
 			} else if (preguntas.size() < 20) {
 				response.put("mensaje", "No hay preguntas suficientes para realizar la trivia de la categoría indicada");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-			} else if (preguntas.size() == 20) {
-				return ResponseEntity.ok(preguntas);
 			}
 		} catch (DataAccessException ex) {
 			response.put("mensaje", "Ocurrió un error interno al tratar de recuperar las preguntas solicitadas");
