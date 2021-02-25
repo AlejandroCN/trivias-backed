@@ -35,18 +35,6 @@
       <artifactId>validation-api</artifactId>
     </dependency>
     
-    <!-- Google Sign In Dependencies -->
-    <dependency>
-        <groupId>com.google.oauth-client</groupId>
-        <artifactId>google-oauth-client</artifactId>
-        <version>1.31.4</version>
-    </dependency>
-    <dependency>
-        <groupId>com.google.api-client</groupId>
-        <artifactId>google-api-client</artifactId>
-        <version>1.31.2</version>
-    </dependency>
-    
     <!-- Json Web Tokens -->
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
